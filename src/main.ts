@@ -19,3 +19,5 @@ for(let i: number = 0; i < numbers.length; i++){
 }
 
 console.log(`Numbers Array Type: ${numbers.getType()}`);
+
+console.log(`Numbers values: ${numbers.getValues()}`);

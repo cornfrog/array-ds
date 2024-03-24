@@ -64,6 +64,10 @@ class MyArray<Type> implements ArrayInterface<Type> {
         this.items = newItems;
         this.length++;
     }
+
+    getValues(): Type[] {
+        return this.items;
+    }
 }
 
 export default MyArray;
