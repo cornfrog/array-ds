@@ -17,3 +17,5 @@ console.log();
 for(let i: number = 0; i < numbers.length; i++){
     console.log(`numbers[${i}] - ${numbers.atIndex(i)}`);
 }
+
+console.log(`Numbers Array Type: ${numbers.getType()}`);
