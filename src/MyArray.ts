@@ -5,9 +5,10 @@ interface ArrayInterface<Type> {
 
     // Methods: 
     // =============
-    push(item: Type): void,                     // to add items to end of array
-    pop(): Type | undefined,                    // removed last item of array
-    atIndex(index: number): Type | undefined    // returns item at entered index 
+    push(item: Type): void;                     // to add items to end of array
+    pop(): Type | undefined;                    // removed last item of array
+    atIndex(index: number): Type | undefined;    // returns item at entered index 
+    insertAt(item: Type, index: number): undefined | void;
 }
 
 class MyArray<Type> implements ArrayInterface<Type> {
@@ -32,10 +33,36 @@ class MyArray<Type> implements ArrayInterface<Type> {
     }
 
     atIndex(index: number): Type | undefined {
-        if(index < 0 || index >= this.length){
+        if (index < 0 || index >= this.length) {
             return undefined;
-        } 
+        }
         return this.items[index];
+    }
+
+    getType(): string {
+        return typeof this.items[0];
+    }
+
+    insertAt(item: Type, index: number): undefined | void {
+        if (index < 0 || index > this.length) return undefined;
+        if (index === this.length) {
+            this.push(item);
+            return;
+        }
+        const newItems: Type[] = [];
+        let itemInserted: boolean = false;
+        for (let i: number = 0; i <= this.length; i++) {
+            if (itemInserted) {
+                newItems[i] = this.items[i-1];
+            } else if (i === index) {
+                newItems[i] = item;
+                itemInserted = true;
+            } else {
+                newItems[i] = this.items[i];
+            }
+        }
+        this.items = newItems;
+        this.length++;
     }
 }
 
